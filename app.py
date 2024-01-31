@@ -1,14 +1,26 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler
-import plotly.express as px
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
-from datetime import datetime
 
-excel_file_path = 'Dataset - Nov 01 - Dec 01 2023.xlsx'  # Replace with the path to your Excel file
-df = pd.read_excel(excel_file_path)
-st.write(df)
+def load_data(file_path):
+    data = pd.read_excel(file_path)
+    return data
+
+def main():
+    st.title("Streamlit Dashboard with Excel Data")
+
+    # Load Excel data
+    file_path = "https://github.com/adithapathiraja/Solar-Power-Data-Visualization/blob/main/Dataset%20-%20Nov%2001%20-%20Dec%2001%202023.xlsx"
+    data = load_data(file_path)
+
+    # Display the dataset
+    st.subheader("Dataset:")
+    st.dataframe(data)
+
+    # Display basic statistics
+    st.subheader("Basic Statistics:")
+    st.write(data.describe())
+
+    # You can add more sections and visualizations as needed
+
+if __name__ == "__main__":
+    main()
